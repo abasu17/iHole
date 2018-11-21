@@ -1,0 +1,43 @@
+{% extends 'layout/layout.html' %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/signup.css" />
+{% endblock%}
+
+{% block body %}
+    <form class="form-signin" method="POST" enctype="multipart/form-data" action= {{ url_for('regCompleted')}}>
+        <center>
+			<h1 class="h2 mb-3 font-weight-bold"> Successful</h1>
+			<hr>
+			<h1 class="h4 mb-3 font-weight-normal">{{user['f_name']}}, your registration has completed.</h1>
+			<img src="{{ url_for('static', filename=user['new_file']) }}" class="img-thumbnail img-fluid" style="height: 150px;" />
+			<table class="table table-sm">
+				<thead>
+					<th colspan=4 style="text-align:center; color:#FFF" class="bg-primary">Credentials</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<th style="text-align:right;" scope="row">User Name</th>
+						<td></td>
+						<td>{{user['user_name']}}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<th style="text-align:right;" scope="row">Password</th>
+						<td></td>
+						<td>{{user['password']}}</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="input-group mb-0">
+				<div class="input-group-prepend">
+						<input type="checkbox" name="accept_terms" id="accept_terms" required />
+						<label for="accept_terms"  style="font-size:12px; margin-left: 5px;" > <font style="color:red;">* </font>I have already note down the above credentials.</label>
+				</div>
+			</div>
+
+			<button class="btn btn-lg btn-success btn-block" type="submit">Done!</button>
+        </center>
+    </form>
+{% endblock %}

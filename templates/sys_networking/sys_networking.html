@@ -1,0 +1,120 @@
+{% extends 'layout/layout.html' %}
+{% block head %}
+	<style type="text/css">
+		input[type=text]{
+			border : 0px;
+			background-color: #f5f5f5;
+			margin-left:15px;
+			width:150px;
+		}
+		
+		.light{
+			width:0px;
+			height:0px;
+			border-radius:50px;
+			margin-left : 20px;
+		}
+		.on{
+			box-shadow: 0px 0px 15px 5px  green;
+		}
+		.off{
+			box-shadow: 0px 0px 15px 5px  red;
+		}
+		
+	</style>
+    <link rel="stylesheet" type="text/css" href="/static/css/signup.css" />
+    	<script>
+    	
+    	function updateOnlineStatus(){
+			var element_light = document.getElementById("status_button");
+			element_light.classList.remove("off");
+			element_light.classList.add("on");
+			var element_text = document.getElementById("status_text");
+			element_text.value = "Online";
+    	}
+    	
+    	function updateOfflineStatus(){
+			var element_light = document.getElementById("status_button");
+			element_light.classList.remove("on");
+			element_light.classList.add("off");
+			var element_text = document.getElementById("status_text");
+			element_text.value = "Offline";
+    	}    	
+    	
+    	function checkEvents(){
+			if (navigator.onLine)
+				updateOnlineStatus();
+			else
+				updateOfflineStatus();
+    	}		
+		window.onload = function () {
+		checkEvents();
+		var dps = []; // dataPoints
+		var chart = new CanvasJS.Chart("chartContainer", {
+			title :{
+				text: "Live Network Performance"
+			},
+			axisY: {
+				includeZero: false
+			},      
+			data: [{
+				type: "line",
+				dataPoints: dps
+			}]
+		});
+
+		var xVal = 0;
+		var yVal = 0;
+		var updateInterval = 1000;
+		var dataLength = 200; // number of dataPoints visible at any point
+		var getData;
+		
+		var updateChart = function (count) {
+			setInterval( function() { 
+				getData = $.get('/pingData');
+				getData.done( function(data) {
+					yVal = Math.round(data);
+				dps.push({
+					x: xVal,
+					y: yVal
+				});
+				xVal++;
+				});
+				
+			if (dps.length > dataLength) {
+				dps.shift();
+			}
+			
+			chart.render();
+			}, 1000);
+		};
+
+		updateChart(dataLength);
+		setInterval(function(){updateChart()}, updateInterval);
+
+		}
+	</script>
+{% endblock%}
+
+{% block body %}
+	<center>
+		<h1 class="h4 mb-4 font-weight-normal" style="margin-top:4%;"><img src="/static/open-iconic/svg/pulse_black.svg" width=3% style="margin-right:5px;" />Networking</h1>
+		<hr style="margin-left:2%;">
+		<table>
+			<tr>
+				<td class="h6 mb-4 font-weight-bold">Network Status</td>
+				<td><label for="status" class="h6 mb-1 font-weight-bold" >:</label></td>
+				<td><img id="status_button" src="/static/assets/button.png" class="light on" /></td>
+				<td><input type="text" id="status_text" value="" readonly /></td>
+			</tr>
+			<tr>
+				<td class="h6 mb-4 font-weight-bold" style="text-align:right;">Ping On</td>
+				<td><label for="status" class="h6 mb-1 font-weight-bold" >:</label></td>
+				<td></td>
+				<td><input type="text" id="status_text" value="www.google.com" readonly /></td>
+			</tr>
+		</table>
+		<div id="chartContainer" style="height: 40vh; width: 98%; margin-left:2%; margin-top:2%;"></div>
+	</center>
+	<script src="/static/js/canvasjs.min.js"></script>
+{% endblock %}

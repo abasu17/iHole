@@ -1,0 +1,25 @@
+{% extends 'layout/layout.html' %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/signup.css" />
+{% endblock%}
+
+{% block body %}
+	<form class="form-signin" method="POST" style="margin-top:2%;">
+		<center>
+		<h1 class="h4 mb-3 font-weight-normal"><img src="/static/open-iconic/svg/cog.svg" width=10% style="margin-right : 2%;"/>System Configuration</h1>
+		<hr>
+		{% if f == 1 %}
+			<div class="alert alert-success" role="alert">
+				Configuration saved successfully!
+			</div>
+		{% endif %}
+		<select class="form-control mb-1" id="inputGender" name="inputGender" required>
+		{% for intF in net_List %}
+			<option value="">{{ intF }}</option>
+		{% endfor%}
+		</select>
+		<input type="text" id="ip_addr" name="ip_addr"  value={{ip_addr}} class="form-control mb-3" placeholder="Enter IP Address [e.g 192.168.0.1]" required autofocus />
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Save Configuration</button>
+		</center>
+	</form>
+{% endblock %}

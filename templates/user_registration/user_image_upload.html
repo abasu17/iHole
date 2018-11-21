@@ -1,0 +1,18 @@
+{% extends 'layout/layout.html' %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/signup.css" />
+{% endblock%}
+
+{% block body %}
+    <form class="form-signin" method="POST" enctype="multipart/form-data">
+        <center>
+        <h1 class="h2 mb-3 font-weight-bold">Welcome {{user}} </h1>
+        <hr>
+        <h1 class="h4 mb-3 font-weight-normal"><img src="/static/open-iconic/svg/data-transfer-upload.svg" width=10% style="margin-right : 2%;"/> Upload photo</h1>
+		<input type="hidden" id="page_index" name="page_index" class="form-control mb-1" value="2" />
+        <input type="file" id="inputImage" name="inputImage" class="form-control mb-3" accept="image/*"  required />
+        <h1 class="h6 mb-5 font-weight-light"><font style="color:#F00">*</font> Please upload a clear front-face photo.</h1>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Upload Photo</button>
+        </center>
+    </form>
+{% endblock %}
