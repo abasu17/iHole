@@ -16,38 +16,17 @@
     </head>
 
     <body>
-		<div class=" fixed-top" style="top:9.2%; left:0; width:100%; background-color:none;">
+		<div class=" fixed-top" style="top:9.2%; left:0; width:100%; background-color:none; z-index:0;">
 			{% block body %}{% endblock %}
         </div>
-
-		<!-- SideBar -->
-		<!--div id="wrapper" class="fixed-top" style="top:9%;" >
-			<div id="sidebar-wrapper">
-				<ul class="sidebar-nav">
-					<li class="sidebar-brand">
-						<font style="color:#aaa; font-size:110%; font-weight:bold;">
-							Panel Board
-						</font>
-					</li>
-					<li>
-						<a href="{{ url_for('networking') }}"><img src="/static/open-iconic/svg/pulse.svg" style="width:7%; margin-right:3%; padding-bottom:5px; "/>Networking</a>
-					</li>
-					<li>
-						<a href="#"><img src="/static/open-iconic/svg/person.svg" style="width:7%; margin-right:3%; padding-bottom:5px; "/> Active Member</a>
-					</li>
-					<li>
-						<a href="#"><img src="/static/open-iconic/svg/info.svg" style="width:7%; margin-right:3%; padding-bottom:5px; "/> History</a>
-					</li>
-				</ul>
-			</div>
-		</div-->
+	
+	<!-- sidebar -->
 	<div id="mySidenav" class="sidenav">
 		<a class="closebtn" href="#" style="left:0; margin-left:0;">[iHole]</a>
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="#">About</a>
-		<a href="#">Services</a>
-		<a href="#">Clients</a>
-		<a href="#">Contact</a>
+		<a href="{{ url_for('networking') }}"><img src="/static/open-iconic/svg/pulse.svg" style="width:7%; margin-right:3%; padding-bottom:5px; "/>Networking</a>
+		<a href="#"><img src="/static/open-iconic/svg/person.svg" style="width:7%; margin-right:3%; padding-bottom:5px; "/> Active Member</a>
+		<a href="#"><img src="/static/open-iconic/svg/info.svg" style="width:7%; margin-right:3%; padding-bottom:5px; "/> History</a>
 	</div>
 
         <!-- Top NavBar -->
@@ -55,7 +34,7 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" onclick="openNav()" style="display:block;" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!--span style="margin-right:10px; font-size:30px;cursor:pointer; color:#fff;" >&#9776;</span-->
+			
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
