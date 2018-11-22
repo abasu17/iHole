@@ -16,22 +16,23 @@
     </head>
 
     <body>
-		<div class=" fixed-top" style="top:9.2%; left:0; width:100%; background-color:none; z-index:0;">
+		<div class=" static-top" style="top:9.2%; left:0; width:100%; height:90vh; background-color:none; z-index:0;">
 			{% block body %}{% endblock %}
         </div>
 	
 	<!-- sidebar -->
 	<div id="mySidenav" class="sidenav">
-		<a class="closebtn" href="#" style="left:0; margin-left:0;">[iHole]</a>
+		<img src="/static/assets/logo.png" class="closebtn" style="width:55%; left:10%; margin-left:0; top:2.5%;">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<a href="{{ url_for('networking') }}"><img src="/static/open-iconic/svg/pulse.svg" style="width:7%; margin-right:3%; padding-bottom:5px; "/>Networking</a>
-		<a href="#"><img src="/static/open-iconic/svg/person.svg" style="width:7%; margin-right:3%; padding-bottom:5px; "/> Active Member</a>
-		<a href="#"><img src="/static/open-iconic/svg/info.svg" style="width:7%; margin-right:3%; padding-bottom:5px; "/> History</a>
+		<br>
+		<a style="font-size: 15px;" href="{{ url_for('networking') }}"><img src="/static/open-iconic/svg/pulse.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> Networking</a>
+		<a style="font-size: 15px;" href="#"><img src="/static/open-iconic/svg/person.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> Active Member</a>
+		<a style="font-size: 15px;" href="#"><img src="/static/open-iconic/svg/info.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> History</a>
 	</div>
 
         <!-- Top NavBar -->
 		<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" style="z-index:0;">
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" onclick="openNav()" style="display:block;" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" onclick="openNav()" style="display:block;" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			
@@ -40,7 +41,7 @@
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto1">
+				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
 						<a class="nav-link" href=" {{ url_for('dashboard') }} ">Home <span class="sr-only">(current)</span></a>
 					</li>

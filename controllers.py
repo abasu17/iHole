@@ -1,11 +1,11 @@
 from flask import render_template, request, session, Response
-#from models import *
+from models import *
 import os, socket
 from werkzeug.utils import secure_filename
 from plugins import *
 import pyspeedtest
 
-#dat = data_store()
+dat = data_store()
 
 class users:
 	
