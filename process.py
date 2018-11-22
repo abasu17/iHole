@@ -4,8 +4,7 @@ import face_recognition
 import sys
 import os
 
-
-'''define function to compare two images.
+'''define function to compare two images..
  	input_image is captured by camera.
  	database_image is stored into database.
  	@author : Aniket Basu <aniketbasu7@gmail.com>
