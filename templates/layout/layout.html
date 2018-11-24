@@ -27,7 +27,7 @@
 		<br>
 		<a style="font-size: 15px;" href="{{ url_for('networking') }}"><img src="/static/open-iconic/svg/pulse.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> Networking</a>
 		<a style="font-size: 15px;" href="#"><img src="/static/open-iconic/svg/person.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> Active Member</a>
-		<a style="font-size: 15px;" href="#"><img src="/static/open-iconic/svg/info.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> History</a>
+		<a style="font-size: 15px;" href="{{ url_for('history') }}"><img src="/static/open-iconic/svg/info.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> History</a>
 	</div>
 
         <!-- Top NavBar -->
@@ -66,7 +66,7 @@
 						</div>
 					</li>
 				</ul>
-				<button class="btn btn-outline-danger my-2 my-sm-0" style="margin-left:15px;" type="submit">Logout</button>
+				<a href="{{ url_for('logout') }} "><button class="btn btn-outline-danger my-2 my-sm-0" style="margin-left:15px;" type="submit">Logout</button></a>
 			</div>
 		</nav>
 			

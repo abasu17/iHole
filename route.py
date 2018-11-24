@@ -9,6 +9,7 @@ from process import *
 user = users()
 conf = configuration()
 netw = networking()
+proc = processing()
 
 @app.route('/', methods=['GET', 'POST'])
 def signin():
@@ -16,21 +17,22 @@ def signin():
 	session['auth'] = False
 	if request.method == 'POST':
 		flag = 1
-		if (True): #user.admLogin()):
+		if (user.admLogin()):
 			session['auth'] = True
 			return render_template('user_dashboard/user_dashboard.html')
-			
 	return render_template('signin.html', f = flag)
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+	lock_status = 0
 	if (not session['auth']):
 		return redirect('/')
 		
 	if request.method == 'POST':
-		unlockLock()
-		
-	return render_template('user_dashboard/user_dashboard.html')
+		if(unlockLock()):
+			if(proc.getLockData()):
+				lock_status = 1
+	return render_template('user_dashboard/user_dashboard.html', lock_stat = lock_status )
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -48,7 +50,6 @@ def signup():
 			session['user_name'] = u_reg['user_name']
 			session['password'] = u_reg['password']
 			return render_template('user_registration/user_image_upload.html' , user = u_reg['f_name'])
-	
 	return render_template('user_registration/user_signup.html')
 
 
@@ -56,7 +57,6 @@ def signup():
 def regCompleted():
 	if (not session['auth']):
 		return redirect('/')
-	
 	if (user.registrationSuccessful()):
 		return render_template('user_dashboard/user_dashboard.html')
 	
@@ -66,7 +66,6 @@ def regCompleted():
 def userDetails():
 	if (not session['auth']):
 		return redirect('/')
-	
 	user_data = user.getUserDetails()
 	return render_template('user_details/user_details.html', users = user_data)
 
@@ -74,7 +73,6 @@ def userDetails():
 def video_feed():
 	if (not session['auth']):
 		return redirect('/')
-	
 	return Response(gen(VideoCamera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @app.route('/changeConfiguration', methods=['POST', 'GET'])
@@ -104,12 +102,22 @@ def changePassword():
 def networking():
 	if (not session['auth']):
 		return redirect('/')
-	
 	return render_template('sys_networking/sys_networking.html')
 
 @app.route('/pingData')
 def pingData():
 	if (not session['auth']):
 		return redirect('/')
-	
 	return str(netw.getPing("www.google.com"))
+
+@app.route('/logout')
+def logout():
+	session.pop('auth')
+	return redirect('/')
+	
+@app.route('/history')
+def history():
+	if (not session['auth']):
+		return redirect('/')
+	hist_data = proc.getLockDetails()
+	return render_template('sys_history/sys_history.html', data = hist_data)

@@ -11,7 +11,6 @@ mongo = PyMongo(app)
 class data_store:
 	
 	def user_signup(self, data):
-		print(data)
 		type_check = db.sys_users.insert_one(data)
 		return (str(type(type_check)) ==  "<class 'pymongo.results.InsertOneResult'>" )
 
@@ -26,3 +25,13 @@ class data_store:
 
 	def change_userPassword(self, data):
 		return db.sys_admin.update_one({"username" :"admin"}, {"$set" : {"password" : data}})
+
+
+class processing_model:
+	
+	def storeLockData(self, data):
+		type_check = db.sys_lock_data.insert_one(data)
+		return (str(type(type_check)) ==  "<class 'pymongo.results.InsertOneResult'>" )
+	
+	def get_lockDetails(self):
+		return db.sys_users.find()

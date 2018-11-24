@@ -1,0 +1,31 @@
+{% extends 'layout/layout.html' %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/signup.css" />
+{% endblock%}
+
+{% block body %}
+    <div style="max-width:100%; margin-top:6%; margin-left: 2%; margin-right: 2%; ">
+        <center>
+			<h1 class="h4 mb-4 font-weight-normal"><img src="/static/open-iconic/svg/info_black.svg" width=3% style="margin-right : 1%;"/>History</h1>
+        <hr>
+			<table class="table table-sm">
+				<thead>
+					<th style="text-align:center; color:#FFF" class="bg-primary">Sl. No.</th>
+					<th style="text-align:center; color:#FFF" class="bg-primary">User</th>
+					<th style="text-align:center; color:#FFF" class="bg-primary">Date</th>
+					<th style="text-align:center; color:#FFF" class="bg-primary">Time</th>
+				</thead>
+				<tbody>
+					{% for u in data: %}
+					<tr>
+						<td style="text-align:center;">{{ loop.index }}</td>
+						<td style="text-align:center;">{{ u["user_name"] }}</td>
+						<td style="text-align:center;">{{ u["date"] }}</td>
+						<td style="text-align:center;">{{ u["time"] }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+        </center>
+    </div>
+{% endblock %}

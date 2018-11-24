@@ -76,4 +76,4 @@ def unlockLock():
     #Start the serial port to communicate with arduino
     data = serial.Serial('/dev/ttyACM1', 9600, timeout = 1)
     data.write(b'1')   # open lock
-    
+    return True

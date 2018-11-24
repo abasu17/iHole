@@ -4,8 +4,10 @@ import os, socket
 from werkzeug.utils import secure_filename
 from plugins import *
 import pyspeedtest
+import time
 
 dat = data_store()
+proc_m = processing_model()
 
 class users:
 	
@@ -15,6 +17,7 @@ class users:
 		login_data["password"] = request.form.get('inputPassword')
 		if (str(dat.admin_login(login_data)) == "None" ):
 			return False
+		session['user_name']  = request.form.get('inputUserID')
 		return True
 
 	def getRegistrationData(self):
@@ -85,3 +88,23 @@ class networking:
 	def getPing(self, webPing):
 		st = pyspeedtest.SpeedTest(webPing)
 		return st.ping()
+
+class processing:
+	
+	def getLockData(self):
+		lock_data = {}
+		currentTime = time.asctime( time.localtime(time.time()) )
+		currentTime = currentTime.split(" ")
+		lock_data["user_name"]  = session['user_name']
+		lock_data["unlockDate"]  = localtime[2] + "-" + localtime[1] + ", " + localtime[-1] + " (" + localtime[0] + ")"
+		lock_data["unlockTime"]  = localtime[3]
+		if (proc_m.storeLockData(lock_data)):
+			return True
+		return False
+
+	
+	def getLockDetails(self):
+		lock_details = []
+		for det in proc_m.get_lockDetails():
+			lock_details.append(det)
+		return lock_details
