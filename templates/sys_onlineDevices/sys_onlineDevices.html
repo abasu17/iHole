@@ -1,0 +1,30 @@
+{% extends 'layout/layout.html' %}
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="/static/css/signup.css" />
+    <style tyle="text/css">
+		.dot {
+			height: 10px;
+			width: 10px;
+			background-color: #55aa00;
+			border-radius: 50%;
+			display: inline-block;
+		}
+    </style>
+{% endblock%}
+
+{% block body %}
+    <div style="max-width:100%; margin-top:6%; margin-left: 2%; margin-right: 2%; ">
+        <center>
+			<h1 class="h4 mb-4 font-weight-normal"><img src="/static/open-iconic/svg/monitor_black.svg" width=3% style="margin-right : 1%;"/>Active Devices</h1>
+        </center>
+        <hr>
+			{% for d in data %}
+				<div class="card" style="width: 15rem; float:left; margin-left: 1%; margin-top: 1%;">
+					<div class="card-body">
+						<h5 class="card-title">{{d[0]}}</h5>
+						<p class="card-text"><span class="dot"></span> Online</p>
+					</div>
+				</div>
+			{% endfor %}
+    </div>
+{% endblock %}

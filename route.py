@@ -10,6 +10,7 @@ user = users()
 conf = configuration()
 netw = networking()
 proc = processing()
+act_dev = activeDevices()
 
 @app.route('/', methods=['GET', 'POST'])
 def signin():
@@ -121,3 +122,10 @@ def history():
 		return redirect('/')
 	hist_data = proc.getLockDetails()
 	return render_template('sys_history/sys_history.html', data = hist_data)
+
+@app.route('/onlineDevices')
+def onlineDevices():
+	if (not session['auth']):
+		return redirect('/')
+	online_dat = act_dev.getPingFromDev()
+	return render_template('sys_onlineDevices/sys_onlineDevices.html', data = online_dat)

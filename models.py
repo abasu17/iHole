@@ -34,4 +34,4 @@ class processing_model:
 		return (str(type(type_check)) ==  "<class 'pymongo.results.InsertOneResult'>" )
 	
 	def get_lockDetails(self):
-		return db.sys_users.find()
+		return db.sys_lock_data.find()
