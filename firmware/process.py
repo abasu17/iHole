@@ -54,7 +54,6 @@ def captureFace():
 		if cv2.waitKey(1) & 0xFF == ord('q'):
 			break                                   # quit
 		elif str(type(faces)) != "<class 'tuple'>":     # if 'c' is pressed
-			print("Saved!!!")
 			cv2.imwrite(cwd + '/temp/temp_img.jpg', frame)      # capture image
 			break
 	# When everything done, release the capture
