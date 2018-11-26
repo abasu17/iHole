@@ -4,11 +4,14 @@ import face_recognition
 import sys
 import os
 
-'''define function to compare two images..
+
+cwd = os.getcwd()
+
+''' define function to compare two images.
  	input_image is captured by camera.
  	database_image is stored into database.
  	@author : Aniket Basu <aniketbasu7@gmail.com>
-	@packages : faceRecognition'''
+	@packages : faceRecognition '''
 def faceRecognition( input_image, database_image ):
 
 	''' take two image and load them into two different variables '''
@@ -37,23 +40,26 @@ def faceRecognition( input_image, database_image ):
  	@author : Aniket Basu <aniketbasu7@gmail.com>
 	@packages : captureFace '''	
 def captureFace():
-    cap = cv2.VideoCapture(0)
-    while(True):
-        # Capture frame-by-frame
-        ret, frame = cap.read()
-
-        # Display the resulting frame
-        cv2.imshow('frame', frame)
+	face_cascade = cv2.CascadeClassifier(cwd + '/object_files/haarcascade_frontalface_default.xml')
+	cap = cv2.VideoCapture(0)
+	while(True):
+		# Capture frame-by-frame
+		ret, frame = cap.read()
+		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+		faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+		# Display the resulting frame
+		cv2.imshow('frame', frame)
         
-        # check if 'q' is pressed
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break                                   # quit
-        elif cv2.waitKey(1) & 0xFF == ord('c'):     # if 'c' is pressed
-            cv2.imwrite('temp_img.jpg', frame)      # capture image
-
-    # When everything done, release the capture
-    cap.release()
-    cv2.destroyAllWindows()
+		# check if 'q' is pressed
+		if cv2.waitKey(1) & 0xFF == ord('q'):
+			break                                   # quit
+		elif str(type(faces)) != "<class 'tuple'>":     # if 'c' is pressed
+			print("Saved!!!")
+			cv2.imwrite(cwd + '/temp/temp_img.jpg', frame)      # capture image
+			break
+	# When everything done, release the capture
+	cap.release()
+	cv2.destroyAllWindows()
 ''' End of captureFace function'''
 
 
@@ -62,18 +68,25 @@ def captureFace():
  	@author : Aniket Basu <aniketbasu7@gmail.com>
 	@packages : captureFace '''	
 def checkFace(img):
-    for root, dirs, files in os.walk('./data'):
-        for _file in files:
-            res = faceRecognition(img, str(root +"/"+_file))
-            if (res):
-                return res
+	for root, dirs, files in os.walk(cwd+'/uploads'):
+		for _file in files:
+			if _file.endswith(".jpg") or _file.endswith(".jpeg"):
+				print(root +"/"+_file)
+				res = faceRecognition(img, str(root +"/"+_file))
+				if (res):
+					return res
         
 ''' define function to capture images.
- 	input_image is captured by camera.
-    @author : Aniket Basu <aniketbasu7@gmail.com>
+	input_image is captured by camera.
+	@author : Aniket Basu <aniketbasu7@gmail.com>
 	@packages : unlockLock '''	
 def unlockLock():
-    #Start the serial port to communicate with arduino
-    data = serial.Serial('/dev/ttyACM1', 9600, timeout = 1)
-    data.write(b'1')   # open lock
-    return True
+	print("OpenLock!!!")
+	#Start the serial port to communicate with arduino
+	data = serial.Serial('/dev/ttyACM1', 9600, timeout = 1)
+	data.write(b'1')   # open lock
+    
+captureFace()
+if(checkFace(cwd + '/temp/temp_img.jpg')):
+	unlockLock()
+	captureFace()

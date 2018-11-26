@@ -4,7 +4,6 @@ from controllers import *
 import os
 from camera import VideoCamera
 from plugins import *
-from process import *
 
 user = users()
 conf = configuration()
