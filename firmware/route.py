@@ -12,23 +12,36 @@ proc = processing()
 act_dev = activeDevices()
 
 @app.route('/', methods=['GET', 'POST'])
-def signin():
+def index():
+	flag = 0
+	session['auth'] = False
+	if request.method == 'POST':
+		flag = 1
+		if (user.userLogin()):
+			session['auth'] = True
+			return redirect('/dashboard')
+	return render_template('user_login/user_login.html', f = flag)
+
+@app.route('/admin_login', methods=['GET', 'POST'])
+def admin_login():
 	flag = 0
 	session['auth'] = False
 	if request.method == 'POST':
 		flag = 1
 		if (user.admLogin()):
 			session['auth'] = True
-			return render_template('user_dashboard/user_dashboard.html')
-	return render_template('signin.html', f = flag)
+			return redirect('/dashboard')
+	return render_template('admin_login/admin_login.html', f = flag)
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+	print("HERE")
 	lock_status = 0
 	if (not session['auth']):
 		return redirect('/')
 		
 	if request.method == 'POST':
+		print("POST")
 		if(unlockLock()):
 			if(proc.getLockData()):
 				lock_status = 1
@@ -91,7 +104,6 @@ def changeConfiguration():
 def changePassword():
 	if (not session['auth']):
 		return redirect('/')
-	
 	flag = 0
 	if request.method == 'POST':
 		if (conf.changeUserPassword()):

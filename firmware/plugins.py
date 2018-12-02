@@ -1,6 +1,7 @@
 import string
 import random
 from flask import session, redirect
+import serial 
 
 def uuid(size = 32, chars = string.ascii_uppercase + string.digits ):
 	return ''.join(random.choice(chars) for _ in range(size))
@@ -17,6 +18,6 @@ def gen(camera):
 	@packages : unlockLock '''	
 def unlockLock():
     #Start the serial port to communicate with arduino
-    data = serial.Serial('/dev/ttyACM1', 9600, timeout = 1)
+    data = serial.Serial('/dev/ttyACM0', 9600, timeout = 1)
     data.write(b'1')   # open lock
     return True

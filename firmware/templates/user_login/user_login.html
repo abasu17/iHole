@@ -4,6 +4,12 @@
 	<title> Smart Door System </title>
 	<link rel="stylesheet" href="/static/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="/static/css/signin.css" />
+	<style>
+		body{
+			background-color : #2f3438;
+			color : #FFFFFF;
+		}
+	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -13,7 +19,7 @@
     <form class="form-signin" method="POST">
         <center>
         <img class="mb-2" src="/static/assets/lock-logo.png" alt="" height="150">
-        <h1 class="h3 mb-3 font-weight-normal">Administration login</h1>
+        <h1 class="h3 mb-3 font-weight-normal">User Login</h1>
         
 		{% if f == 1 %}
 			<div class="alert alert-danger" role="alert">
@@ -35,7 +41,7 @@
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         
-        <p class="mt-5 mb-3 text-muted"><a href="#">Forgot Password? </a></p>
+        <p class="mt-5 mb-3 text-muted"><a href="{{ url_for('admin_login') }}">Login as Admin </a></p>
         </center>
     </form>
 {% endblock %}

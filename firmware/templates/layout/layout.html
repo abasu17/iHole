@@ -26,7 +26,9 @@
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 		<br>
 		<a style="font-size: 15px;" href="{{ url_for('networking') }}"><img src="/static/open-iconic/svg/pulse.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> Networking</a>
-		<a style="font-size: 15px;" href="{{ url_for('onlineDevices')}}"><img src="/static/open-iconic/svg/monitor.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> Active Devices</a>
+		{% if session['user_name'] == "admin" %}
+			<a style="font-size: 15px;" href="{{ url_for('onlineDevices')}}"><img src="/static/open-iconic/svg/monitor.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> Active Devices</a>
+		{% endif %}
 		<a style="font-size: 15px;" href="{{ url_for('history') }}"><img src="/static/open-iconic/svg/info.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> History</a>
 	</div>
 
@@ -51,20 +53,23 @@
 						Configurations
 						</a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{ url_for('changeConfiguration') }}">System Configuration</a>
+							{% if session['user_name'] == "admin" %}
+								<a class="dropdown-item" href="{{ url_for('changeConfiguration') }}">System Configuration</a>
+							{% endif %}
 							<a class="dropdown-item" href="{{ url_for('changePassword') }}">Change Password</a>
 						</div>
 					</li>
-					
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Users
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="{{ url_for('signup') }}">New Registration</a>
-							<a class="dropdown-item" href="{{ url_for('userDetails') }}">User Details</a>
-						</div>
-					</li>
+					{% if session['user_name'] == "admin" %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Users
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<a class="dropdown-item" href="{{ url_for('signup') }}">New Registration</a>
+								<a class="dropdown-item" href="{{ url_for('userDetails') }}">User Details</a>
+							</div>
+						</li>
+					{% endif %}
 				</ul>
 				<a href="{{ url_for('logout') }} "><button class="btn btn-outline-danger my-2 my-sm-0" style="margin-left:15px;" type="submit">Logout</button></a>
 			</div>

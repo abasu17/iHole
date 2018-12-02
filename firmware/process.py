@@ -80,7 +80,6 @@ def checkFace(img):
 	@author : Aniket Basu <aniketbasu7@gmail.com>
 	@packages : unlockLock '''	
 def unlockLock():
-	print("OpenLock!!!")
 	#Start the serial port to communicate with arduino
 	data = serial.Serial('/dev/ttyACM1', 9600, timeout = 1)
 	data.write(b'1')   # open lock

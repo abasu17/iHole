@@ -19,6 +19,15 @@ class users:
 			return False
 		session['user_name']  = request.form.get('inputUserID')
 		return True
+	
+	def userLogin(self):
+		login_data = {}
+		login_data["user_id"] = request.form.get('inputUserID')
+		login_data["password"] = request.form.get('inputPassword')
+		if (str(dat.user_login(login_data)) == "None" ):
+			return False
+		session['user_name']  = request.form.get('inputUserID')
+		return True
 
 	def getRegistrationData(self):
 		user_data = {}
@@ -77,11 +86,21 @@ class configuration:
 	def getNetworkInterfaces(self):
 		return os.popen("ifconfig -a | sed 's/[ \t].*//;/^\(lo\|\)$/d'").read().split("\n")[:-1]
 	
-	def changeUserPassword(self):
+	def changeAdminPassword(self):
 		password = request.form.get('inputPassword')
-		if (dat.change_userPassword(password)):
+		if (dat.change_adminPassword(password)):
 			return True
 		return False
+
+	def changeUserPassword(self):
+		data = {}
+		password = request.form.get('inputPassword')
+		data["user_name"] = session["user_name"]
+		data["password"] = password
+		if (dat.change_userPassword(data)):
+			return True
+		return False
+
 
 class networking:
 	
@@ -96,8 +115,8 @@ class processing:
 		currentTime = time.asctime( time.localtime(time.time()) )
 		currentTime = currentTime.split(" ")
 		lock_data["user_name"]  = session['user_name']
-		lock_data["unlockDate"]  = localtime[2] + "-" + localtime[1] + ", " + localtime[-1] + " (" + localtime[0] + ")"
-		lock_data["unlockTime"]  = localtime[3]
+		lock_data["unlockDate"]  = currentTime[2] + "-" + currentTime[1] + ", " + currentTime[-1] + " (" + currentTime[0] + ")"
+		lock_data["unlockTime"]  = currentTime[3]
 		if (proc_m.storeLockData(lock_data)):
 			return True
 		return False

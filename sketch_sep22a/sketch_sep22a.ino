@@ -13,7 +13,7 @@ void setup()
 void loop() 
 { 
   if ((int)Serial.read() > 0){ // check if serial have some signal
-    lockController.write(Serial.read() + 271); // write signal on servo
+    lockController.write(Serial.read() + 90); // write signal on servo
     delay(15000);  // wait for 15 secs after open lock
     lockController.write(0);  // again move servo to 0 position
   } 
