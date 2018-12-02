@@ -17,6 +17,5 @@ It is an Smart System, that comprises of a webcam that captures the image of the
 	3. Face Recognition
 	4. OpenCV
 	5. HTML 5, CSS 3, Javascript, Bootstrap
-	6. Networking tools (pyspeedtest)
-	#### Database 
-	NoSQL MongoDB Database
+	6. Networking tools (pyspeedtest) 
+	7. NoSQL MongoDB Database
