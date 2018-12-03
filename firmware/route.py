@@ -35,7 +35,6 @@ def admin_login():
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
-	print("HERE")
 	lock_status = 0
 	if (not session['auth']):
 		return redirect('/')
@@ -60,7 +59,7 @@ def signup():
 				return render_template('user_registration/user_information.html', user = session)
 		elif (  u_reg != {}): 
 			session['f_name'] = u_reg['f_name']
-			session['user_name'] = u_reg['user_name']
+			session['uname'] = u_reg['user_name']
 			session['password'] = u_reg['password']
 			return render_template('user_registration/user_image_upload.html' , user = u_reg['f_name'])
 	return render_template('user_registration/user_signup.html')

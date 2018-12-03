@@ -14,10 +14,11 @@
 
 {% block body %}
     <div style="max-width:100%; margin-top:6%; margin-left: 2%; margin-right: 2%; ">
-        <center>
-			<h1 class="h4 mb-4 font-weight-normal"><img src="/static/open-iconic/svg/monitor_black.svg" width=3% style="margin-right : 1%;"/>Active Devices</h1>
-        </center>
-        <hr>
+		<div style="margin-top:10%; max-width:100%; width:100%;">
+			<center>
+				<h1 class="h4 mb-4 font-weight-normal"><img src="/static/open-iconic/svg/monitor_black.svg" width=5% style="margin-right : 1%;"/>Active Devices</h1>
+			</center>
+			<hr>
 			{% for d in data %}
 				<div class="card" style="width: 15rem; float:left; margin-left: 1%; margin-top: 1%;">
 					<div class="card-body">
@@ -26,5 +27,6 @@
 					</div>
 				</div>
 			{% endfor %}
+		</div>
     </div>
 {% endblock %}

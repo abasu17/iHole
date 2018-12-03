@@ -57,7 +57,7 @@ class users:
 		os.system('rm ' +  os.path.join(app.config['STATIC_F'], session['new_file']))
 		session.pop('new_file')
 		session.pop('f_name')
-		session.pop('user_name')
+		session.pop('uname')
 		session.pop('password')
 		return True
 	
@@ -115,8 +115,8 @@ class processing:
 		currentTime = time.asctime( time.localtime(time.time()) )
 		currentTime = currentTime.split(" ")
 		lock_data["user_name"]  = session['user_name']
-		lock_data["unlockDate"]  = currentTime[2] + "-" + currentTime[1] + ", " + currentTime[-1] + " (" + currentTime[0] + ")"
-		lock_data["unlockTime"]  = currentTime[3]
+		lock_data["unlockDate"]  = currentTime[3] + "-" + currentTime[1] + ", " + currentTime[-1] + " (" + currentTime[0] + ")"
+		lock_data["unlockTime"]  = currentTime[-2]
 		if (proc_m.storeLockData(lock_data)):
 			return True
 		return False

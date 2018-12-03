@@ -98,23 +98,25 @@
 
 {% block body %}
 	<center>
-		<h1 class="h4 mb-4 font-weight-normal" style="margin-top:5%;"><img src="/static/open-iconic/svg/pulse_black.svg" width=3% style="margin-right:5px;" />Networking</h1>
-		<hr style="margin-left:2%;">
-		<table>
-			<tr>
-				<td class="h6 mb-4 font-weight-bold">Network Status</td>
-				<td><label for="status" class="h6 mb-1 font-weight-bold" >:</label></td>
-				<td><img id="status_button" src="/static/assets/button.png" class="light on" /></td>
-				<td><input type="text" id="status_text" value="" readonly /></td>
-			</tr>
-			<tr>
-				<td class="h6 mb-4 font-weight-bold" style="text-align:right;">Ping On</td>
-				<td><label for="status" class="h6 mb-1 font-weight-bold" >:</label></td>
-				<td></td>
-				<td><input type="text" id="status_text" value="www.google.com" readonly /></td>
-			</tr>
-		</table>
-		<div id="chartContainer" style="height: 40vh; width: 98%; margin-left:2%; margin-top:2%;"></div>
+		<div style="margin-top:10%; max-width:100%; width:100%;">
+			<h1 class="h4 mb-4 font-weight-normal" style="margin-top:5%;"><img src="/static/open-iconic/svg/pulse_black.svg" width=5% style="margin-right:5px;" />Networking</h1>
+			<hr style="margin-left:2%;">
+			<table>
+				<tr>
+					<td class="h6 mb-4 font-weight-bold">Network Status</td>
+					<td><label for="status" class="h6 mb-1 font-weight-bold" >:</label></td>
+					<td><img id="status_button" src="/static/assets/button.png" class="light on" /></td>
+					<td><input type="text" id="status_text" value="" readonly /></td>
+				</tr>
+				<tr>
+					<td class="h6 mb-4 font-weight-bold" style="text-align:right;">Ping On</td>
+					<td><label for="status" class="h6 mb-1 font-weight-bold" >:</label></td>
+					<td></td>
+					<td><input type="text" id="status_text" value="www.google.com" readonly /></td>
+				</tr>
+			</table>
+			<div id="chartContainer" style="height: 40vh; width: 98%; margin-left:2%; margin-top:2%;"></div>
+		</div>
 	</center>
 	<script src="/static/js/canvasjs.min.js"></script>
 {% endblock %}

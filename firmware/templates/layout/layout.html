@@ -24,7 +24,7 @@
 	<div id="mySidenav" class="sidenav">
 		<img src="/static/assets/logo.png" class="closebtn" style="width:55%; left:10%; margin-left:0; top:2.5%;">
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-		<br>
+		<br><br>
 		<a style="font-size: 15px;" href="{{ url_for('networking') }}"><img src="/static/open-iconic/svg/pulse.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> Networking</a>
 		{% if session['user_name'] == "admin" %}
 			<a style="font-size: 15px;" href="{{ url_for('onlineDevices')}}"><img src="/static/open-iconic/svg/monitor.svg" style="width:8%; margin-right:3%; padding-bottom:5px; "/> Active Devices</a>
