@@ -11,7 +11,7 @@ It is an Smart System, that comprises of a webcam that captures the image of the
 	4. Arduino
 	5. Servo Motor
 
-### Development Environment specification
+## Development Environment specification
 	1. Python 3+
 	2. Flask
 	3. Face Recognition
@@ -19,3 +19,6 @@ It is an Smart System, that comprises of a webcam that captures the image of the
 	5. HTML 5, CSS 3, Javascript, Bootstrap
 	6. Networking tools (pyspeedtest) 
 	7. NoSQL MongoDB Database
+
+## App Development specification
+	1. PhoneGaps
