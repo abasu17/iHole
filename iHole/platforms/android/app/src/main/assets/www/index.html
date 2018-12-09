@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+		<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; syle-src 'self' 'unsafe-inline'; media-src *" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<title>iHole</title>
+		<script>
+			
+			var ip_addr;
+			if ( localStorage.getItem('ip_address') != null ){
+				ip_addr = localStorage.getItem('ip_address');
+			} else {
+				localStorage.setItem('ip_address', prompt("Enter lock device IP : "));
+				ip_addr = localStorage.getItem('ip_address');
+			}
+
+			var url = "http://" + ip_addr + ":5000/dashboard";
+			var ele = "<iframe id='view_screen' style='width:100%; height:100vh; border:0; float:left;' src='" + url + "'></iframe>";
+			
+		</script>
+	</head>
+
+	<body>
+		<script>	
+			document.body.innerHTML += ele; 
+		</script>	
+	</body>
+
+</html>

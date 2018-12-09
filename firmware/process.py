@@ -84,6 +84,7 @@ def unlockLock():
 	data = serial.Serial('/dev/ttyACM1', 9600, timeout = 1)
 	data.write(b'1')   # open lock
     
+
 captureFace()
 if(checkFace(cwd + '/temp/temp_img.jpg')):
 	unlockLock()
